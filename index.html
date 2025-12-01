@@ -50,14 +50,13 @@
         <div class="name">MIDWEST IT PROVIDER</div>
       </div>
 
-      <!-- Mobile toggle button -->
+      <!-- Mobile toggle -->
       <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
-        <!-- simple hamburger icon -->
         <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
 
       <nav aria-label="Primary">
-        <ul>
+        <ul id="nav-links" class="nav-links">
           <li><a href="#services">Services</a></li>
           <li><a href="#partners">Partners</a></li>
           <li><a href="blog.html">Blog</a></li>
@@ -262,35 +261,34 @@
 
   <script>
   (function () {
-    const btn = document.getElementById('menu-toggle');
-    const links = document.getElementById('nav-links');
+    var btn = document.getElementById('menu-toggle');
+    var links = document.getElementById('nav-links');
     if (!btn || !links) return;
 
     btn.addEventListener('click', function () {
-      const open = links.classList.toggle('open');
+      var open = links.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    // Optional: close the menu when clicking a link (good UX)
+    // Close after choosing a nav link
     links.addEventListener('click', function (e) {
-      const target = e.target;
-      if (target && target.tagName === 'A') {
+      if (e.target && e.target.tagName === 'A') {
         links.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
       }
     });
 
-    // Optional: close on outside click
+    // Close on outside click
     document.addEventListener('click', function (e) {
       if (!links.classList.contains('open')) return;
-      const within = e.target.closest('#nav-links') || e.target.closest('#menu-toggle');
-      if (!within) {
+      if (!e.target.closest('#nav-links') && !e.target.closest('#menu-toggle')) {
         links.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
       }
     });
   })();
-</script>
+  </script>
+
 
 </body>
 </html>

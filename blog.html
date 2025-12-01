@@ -15,15 +15,23 @@
         <img src="assets/LOGODONE.png" alt="Midwest IT Provider logo" width="44" height="44"/>
         <div class="name">MIDWEST IT PROVIDER</div>
       </div>
+
+      <!-- Mobile toggle -->
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
       <nav aria-label="Primary">
-        <ul>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#partners">Partners</a></li>
-          <li><a class="cta" href="index.html#contact">Contact</a></li>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a class="cta" href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
+
 
   <main class="section">
     <div class="container">
@@ -108,5 +116,36 @@
   <footer style="background:#f7f9fc; text-align:center; padding:2rem 1rem;">
     <p style="margin-top:.75rem; font-size:.95rem; color:#333;">© 2025 Midwest IT Provider. All rights reserved.</p>
   </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('menu-toggle');
+      var links = document.getElementById('nav-links');
+      if (!btn || !links) return;
+
+      btn.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      // Close after choosing a nav link
+      links.addEventListener('click', function (e) {
+        if (e.target && e.target.tagName === 'A') {
+          links.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Close on outside click
+      document.addEventListener('click', function (e) {
+        if (!links.classList.contains('open')) return;
+        if (!e.target.closest('#nav-links') && !e.target.closest('#menu-toggle')) {
+          links.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>

@@ -131,7 +131,7 @@ footer{padding:2rem 0;border-top:1px solid #e5e7eb;background:#fff}
 .site-footer .name{ font-weight:800; color:#5B21B6; }
 .site-footer p{ margin-top:.5rem; font-size:.95rem; color:#333; }
 
-/* Base nav layout (desktop stays the same) */
+/* === Mobile Nav Fix (Hamburger) === */
 .nav { display:flex; align-items:center; justify-content:space-between; padding:.75rem 0; }
 .nav .brand { display:flex; align-items:center; gap:.6rem; }
 .nav .name { font-weight:800; letter-spacing:.4px; color:var(--brand-purple,#5B21B6); }
@@ -153,12 +153,13 @@ footer{padding:2rem 0;border-top:1px solid #e5e7eb;background:#fff}
 /* Mobile / Tablet */
 @media (max-width: 900px) {
   .menu-toggle { display:block; }
-  /* collapse the links by default */
+  .nav { position:relative; }
+  /* collapsed menu container */
   .nav-links {
     position:absolute;
     right:1rem; left:1rem;
-    top:72px; /* just below header */
-    display:none;                /* hidden until opened */
+    top:72px; /* drops under header */
+    display:none;
     flex-direction:column;
     gap:0;
     background:#ffffff;
@@ -177,14 +178,11 @@ footer{padding:2rem 0;border-top:1px solid #e5e7eb;background:#fff}
   }
   .nav-links li:last-child a { border-bottom:none; }
 
-  /* Make CTA full width and keep brand gradient */
+  /* CTA inside the dropdown */
   .nav-links .cta {
     background:linear-gradient(90deg,#5B21B6,#7c3aed);
     color:#fff; border:none; border-radius:.5rem;
-    text-align:center; margin: .5rem 1rem 1rem;
+    text-align:center; margin:.5rem 1rem 1rem;
   }
-
-  /* keep header items from squishing */
-  .nav { position:relative; }
-  nav[aria-label="Primary"] { margin-left: .75rem; }
 }
+/* === End Mobile Nav Fix === */
