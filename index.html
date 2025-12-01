@@ -49,6 +49,13 @@
         <img src="assets/LOGODONE.png" alt="Midwest IT Provider logo" width="44" height="44"/>
         <div class="name">MIDWEST IT PROVIDER</div>
       </div>
+
+      <!-- Mobile toggle button -->
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <!-- simple hamburger icon -->
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
       <nav aria-label="Primary">
         <ul>
           <li><a href="#services">Services</a></li>
@@ -252,5 +259,38 @@
   <footer style="background:#f7f9fc; text-align:center; padding:2rem 1rem;">
     <p style="margin-top:.75rem; font-size:.95rem; color:#333;">© 2025 Midwest IT Provider. All rights reserved.</p>
   </footer>
+
+  <script>
+  (function () {
+    const btn = document.getElementById('menu-toggle');
+    const links = document.getElementById('nav-links');
+    if (!btn || !links) return;
+
+    btn.addEventListener('click', function () {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Optional: close the menu when clicking a link (good UX)
+    links.addEventListener('click', function (e) {
+      const target = e.target;
+      if (target && target.tagName === 'A') {
+        links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Optional: close on outside click
+    document.addEventListener('click', function (e) {
+      if (!links.classList.contains('open')) return;
+      const within = e.target.closest('#nav-links') || e.target.closest('#menu-toggle');
+      if (!within) {
+        links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
